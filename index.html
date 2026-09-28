@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Logical Expression & Truth Table Generator</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2, #ff758c);
+    min-height: 100vh;
+    color: #222;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 35px 15px;
+    color: white;
+}
+
+header h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+    text-shadow: 2px 3px 8px #333;
+}
+
+header p {
+    font-size: 17px;
+}
+
+/* Main container */
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.96);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+    color: #5b35d5;
+    margin-bottom: 15px;
+}
+
+/* Information section */
+.info {
+    line-height: 1.7;
+}
+
+.info strong {
+    color: #e63946;
+}
+
+/* Logic symbols */
+.symbol-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.symbol {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    padding: 18px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.symbol:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.symbol .icon {
+    font-size: 35px;
+    font-weight: bold;
+    color: #4a148c;
+}
+
+.symbol h3 {
+    margin: 8px 0;
+    color: #222;
+}
+
+/* Generator */
+.generator {
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    max-width: 700px;
+    padding: 14px;
+    font-size: 17px;
+    border: 2px solid #7654e8;
+    border-radius: 12px;
+    outline: none;
+    margin: 10px;
+}
+
+input:focus {
+    box-shadow: 0 0 10px #7654e8;
+}
+
+button {
+    padding: 13px 25px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.example {
+    margin: 15px;
+    color: #555;
+}
+
+/* Truth table */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 500px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: linear-gradient(135deg, #5b35d5, #8e44ad);
+    color: white;
+    padding: 13px;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background: #f4f0ff;
+}
+
+tr:hover {
+    background: #ffe5ec;
+}
+
+/* Error */
+#error {
+    color: #d00000;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: white;
+    padding: 25px;
+    margin-top: 10px;
+}
+
+/* Mobile */
+@media(max-width:600px) {
+    header h1 {
+        font-size: 27px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    input {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🧠 Logical Expression & Truth Table Generator</h1>
+    <p>Learn Boolean Logic • Generate Truth Tables • Understand Logic Gates</p>
+</header>
+
+<div class="container">
+
+    <!-- Introduction -->
+    <section class="card info">
+        <h2>📘 What is a Logical Expression?</h2>
+
+        <p>
+            A <strong>logical expression</strong> is a combination of
+            Boolean variables and logical operators that produces either
+            <strong>TRUE (1)</strong> or <strong>FALSE (0)</strong>.
+        </p>
+
+        <br>
+
+        <p>
+            Example:
+            <strong>A AND B</strong> is a logical expression.
+            It becomes TRUE only when both A and B are TRUE.
+        </p>
+
+        <br>
+
+        <p>
+            Truth tables are used in computer science, digital electronics,
+            artificial intelligence and mathematics to show the result of
+            logical expressions for every possible input combination.
+        </p>
+    </section>
+
+    <!-- Symbols -->
+    <section class="card">
+        <h2>🔣 Logical Operators & Symbols</h2>
+
+        <div class="symbol-grid">
+
+            <div class="symbol">
+                <div class="icon">∧</div>
+                <h3>AND</h3>
+                <p>A ∧ B</p>
+            </div>
+
+            <div class="symbol">
+                <div class="icon">∨</div>
+                <h3>OR</h3>
+                <p>A ∨ B</p>
+            </div>
+
+            <div class="symbol">
+                <div class="icon">¬</div>
+                <h3>NOT</h3>
+                <p>¬A</p>
+            </div>
+
+            <div class="symbol">
+                <div class="icon">⊕</div>
+                <h3>XOR</h3>
+                <p>A ⊕ B</p>
+            </div>
+
+            <div class="symbol">
+                <div class="icon">⊼</div>
+                <h3>NAND</h3>
+                <p>¬(A ∧ B)</p>
+            </div>
+
+            <div class="symbol">
+                <div class="icon">⊽</div>
+                <h3>NOR</h3>
+                <p>¬(A ∨ B)</p>
+            </div>
+
+            <div class="symbol">
+                <div class="icon">↔</div>
+                <h3>XNOR</h3>
+                <p>A ↔ B</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Generator -->
+    <section class="card generator">
+
+        <h2>⚡ Truth Table Generator</h2>
+
+        <p>
+            Enter a Boolean expression using:
+            <strong>AND, OR, NOT</strong>
+        </p>
+
+        <p class="example">
+            Example: <b>A AND B</b>
+            &nbsp; | &nbsp;
+            <b>A OR B</b>
+            &nbsp; | &nbsp;
+            <b>NOT A</b>
+        </p>
+
+        <input
+            type="text"
+            id="expression"
+            placeholder="Enter expression e.g. A AND B"
+        >
+
+        <br>
+
+        <button onclick="generateTable()">
+            Generate Truth Table
+        </button>
+
+        <div id="error"></div>
+
+        <div class="table-container" id="tableContainer"></div>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>💻 Logical Expression & Truth Table Generator</p>
+    <p>Micro Project • Computer Science / AI</p>
+</footer>
+
+
+<script>
+
+/* Generate Truth Table */
+
+function generateTable() {
+
+    const input = document
+        .getElementById("expression")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const error = document.getElementById("error");
+    const container = document.getElementById("tableContainer");
+
+    error.innerHTML = "";
+    container.innerHTML = "";
+
+    if (input === "") {
+        error.innerHTML = "⚠️ Please enter a logical expression.";
+        return;
+    }
+
+    /* Find variables */
+    let variables = input.match(/\b[A-Z]\b/g);
+
+    if (!variables) {
+        error.innerHTML =
+            "⚠️ Please use variables such as A, B or C.";
+        return;
+    }
+
+    variables = [...new Set(variables)];
+
+    if (variables.length > 4) {
+        error.innerHTML =
+            "⚠️ Please use a maximum of 4 variables.";
+        return;
+    }
+
+    /* Number of rows */
+    const rows = Math.pow(2, variables.length);
+
+    let html = "<table>";
+
+    /* Header */
+    html += "<tr>";
+
+    variables.forEach(v => {
+        html += `<th>${v}</th>`;
+    });
+
+    html += `<th>${input}</th>`;
+    html += "</tr>";
+
+    /* Generate rows */
+    for (let i = 0; i < rows; i++) {
+
+        let values = {};
+
+        variables.forEach((v, index) => {
+
+            values[v] =
+                ((i >> (variables.length - index - 1)) & 1) === 1;
+
+        });
+
+        let result;
+
+        try {
+
+            result = evaluateExpression(input, values);
+
+        } catch (e) {
+
+            error.innerHTML =
+                "⚠️ Invalid expression. Try: A AND B";
+
+            return;
+        }
+
+        html += "<tr>";
+
+        variables.forEach(v => {
+
+            html += `<td>${values[v] ? 1 : 0}</td>`;
+
+        });
+
+        html += `<td><strong>${result ? 1 : 0}</strong></td>`;
+
+        html += "</tr>";
+    }
+
+    html += "</table>";
+
+    container.innerHTML = html;
+}
+
+
+/* Evaluate Boolean Expression */
+
+function evaluateExpression(expression, values) {
+
+    let exp = expression;
+
+    /* Replace operators */
+
+    exp = exp.replace(/\bAND\b/g, " && ");
+    exp = exp.replace(/\bOR\b/g, " || ");
+    exp = exp.replace(/\bNOT\b/g, " ! ");
+
+    /* XOR */
+    exp = exp.replace(
+        /\b([A-Z])\s+XOR\s+([A-Z])\b/g,
+        "($1 !== $2)"
+    );
+
+    /* Replace variables */
+    Object.keys(values).forEach(v => {
+
+        const value = values[v] ? "true" : "false";
+
+        exp = exp.replace(
+            new RegExp("\\b" + v + "\\b", "g"),
+            value
+        );
+
+    });
+
+    /*
+       Evaluate the Boolean expression.
+       Only expressions entered into this project
+       are intended to be evaluated.
+    */
+
+    return Function('"use strict"; return (' + exp + ')')();
+
+}
+
+</script>
+
+</body>
+</html>
